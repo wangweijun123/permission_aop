@@ -12,10 +12,13 @@ import android.widget.Toast;
 import com.dn.tim.lib_permission.annotation.Permission;
 import com.dn.tim.lib_permission.annotation.PermissionCanceled;
 import com.dn.tim.lib_permission.annotation.PermissionDenied;
+import com.example.wangweijun.behavior.annotation.Behavior;
+import com.example.wangweijun.behavior.bean.User;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     private static final String TAG = "MainActivity";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,6 +29,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         findViewById(R.id.btn_two_permission).setOnClickListener(this);
         findViewById(R.id.btn_request_200).setOnClickListener(this);
         findViewById(R.id.btn_service).setOnClickListener(this);
+        findViewById(R.id.btn_behavior).setOnClickListener(this);
 
         //设置各自品牌的系统权限页
 //        JPermissionUtil.setManuFacturer("genymotion", MyTestGenymotionMenu.class);
@@ -57,6 +61,19 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.btn_service:
                 requestService();
                 break;
+            case R.id.btn_behavior:
+                behavior222(new User("wangweijun"));
+                break;
+
+        }
+    }
+
+    @Behavior("xxxx")
+    private void behavior222(User user) {
+        try {
+            Thread.sleep(500);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
         }
     }
 

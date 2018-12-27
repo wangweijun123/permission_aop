@@ -1,1 +1,1 @@
-include ':app', ':libpermission'
+include ':app', ':libpermission', ':behavior'
