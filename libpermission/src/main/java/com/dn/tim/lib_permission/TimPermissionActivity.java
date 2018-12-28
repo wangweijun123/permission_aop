@@ -8,8 +8,10 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
+import android.util.Log;
 
 import com.dn.tim.lib_permission.core.IPermission;
+import com.dn.tim.lib_permission.core.TimPermissionAspect;
 
 /**
  * 工具activity
@@ -60,6 +62,7 @@ public class TimPermissionActivity extends Activity {
             finish();
             return;
         }
+        Log.i(TimPermissionAspect.TAG, "requestPermissions ...mPermissions:"+mPermissions);
         ActivityCompat.requestPermissions(this, this.mPermissions, this.mRequestCode);
 
     }
@@ -71,7 +74,8 @@ public class TimPermissionActivity extends Activity {
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-
+        Log.i(TimPermissionAspect.TAG, "onRequestPermissionsResult ...permissions:"+permissions
+        +", grantResults:"+grantResults);
         //请求权限成功
         if (PermissionUtils.verifyPermission(this, grantResults)) {
             permissionListener.ganted();

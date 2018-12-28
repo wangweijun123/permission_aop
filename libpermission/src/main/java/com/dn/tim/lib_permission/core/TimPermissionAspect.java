@@ -18,11 +18,11 @@ import org.aspectj.lang.annotation.Pointcut;
 @Aspect
 public class TimPermissionAspect {
 
-    private static final String TAG = "TimPermissionAspect";
+    public static final String TAG = "TimPermissionAspect";
 
     @Pointcut("execution(@com.dn.tim.lib_permission.annotation.Permission * *(..)) && @annotation(permission)")
     public void requestPermission(Permission permission) {
-
+        Log.i(TAG, "定义一个切入点，没用的,不会执行");
     }
 
     @Around("requestPermission(permission)")
@@ -32,6 +32,7 @@ public class TimPermissionAspect {
         Context context = null;
 
         final Object object = joinPoint.getThis();
+        Log.i(TAG, "aroundJointPoint ...object:"+object);
         if (joinPoint.getThis() instanceof Context) {
             context = (Context) object;
         } else if (joinPoint.getThis() instanceof android.support.v4.app.Fragment) {
